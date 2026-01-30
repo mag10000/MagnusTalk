@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://ckv62lvnd8jbq"]
+
+[ext_resource type="Script" uid="uid://cla73sjrqot22" path="res://addons/magnustalk/taskbar.gd" id="1_3ogm1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ogm1"]
+bg_color = Color(0.32293501, 0.0008936918, 0.50229007, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_hl2kk"]
+Button/styles/normal = SubResource("StyleBoxFlat_3ogm1")
+
+[node name="Taskbar" type="CanvasLayer" unique_id=1662272812]
+script = ExtResource("1_3ogm1")
+
+[node name="Panel" type="Panel" parent="." unique_id=1439067724]
+visible = false
+anchors_preset = -1
+anchor_top = 0.9166667
+anchor_right = 0.9479167
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1823098892]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="test" type="Button" parent="Panel/HBoxContainer" unique_id=13047331]
+layout_mode = 2
+text = "Test Dialouge"
+
+[node name="edit" type="Button" parent="Panel/HBoxContainer" unique_id=440960600]
+layout_mode = 2
+text = "Edit Dialouge Box"
+
+[node name="clone" type="Button" parent="Panel/HBoxContainer" unique_id=1331422480]
+layout_mode = 2
+text = "Clone Dialouge Box"
+
+[node name="render" type="Button" parent="Panel/HBoxContainer" unique_id=1005689979]
+layout_mode = 2
+text = "Render Dialouge"
+
+[node name="docs" type="Button" parent="Panel/HBoxContainer" unique_id=1073218285]
+layout_mode = 2
+disabled = true
+text = "Docs"
+
+[node name="Button" type="Button" parent="." unique_id=202989244]
+anchors_preset = -1
+anchor_left = 0.9479167
+anchor_top = 0.9166667
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_hl2kk")
+text = "MT"
+metadata/_edit_use_anchors_ = true
+
+[node name="TestFileDialog" type="FileDialog" parent="." unique_id=1073039089]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 4
+file_mode = 0
+filters = PackedStringArray("*.txt")
+
+[node name="Timer" type="Timer" parent="." unique_id=1097460253]
+autostart = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=15279193]
+
+[connection signal="pressed" from="Panel/HBoxContainer/test" to="." method="_on_test_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/clone" to="." method="_on_clone_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/render" to="." method="_on_render_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/docs" to="." method="_on_docs_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="file_selected" from="TestFileDialog" to="." method="_on_test_file_dialog_file_selected"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

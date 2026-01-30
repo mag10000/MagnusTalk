@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://crw2orxteq1fq"]
+
+[ext_resource type="Script" uid="uid://0rb3wd5k4e8w" path="res://addons/magnustalk/render_scene.gd" id="1_rpbcr"]
+
+[node name="render" type="CanvasLayer" unique_id=1696320856]
+script = ExtResource("1_rpbcr")
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=686941375]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 4
+visible = true
+file_mode = 0
+filters = PackedStringArray("*.txt")
+
+[node name="CodeEdit" type="CodeEdit" parent="." unique_id=1217533643]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "DIALOUGE"
+editable = false
+gutters_draw_breakpoints_gutter = true
+gutters_draw_bookmarks = true
+gutters_draw_executing_lines = true
+gutters_draw_line_numbers = true
+gutters_zero_pad_line_numbers = true
+gutters_draw_fold_gutter = true
+
+[node name="close" type="Button" parent="CodeEdit" unique_id=787982205]
+layout_mode = 0
+anchor_left = 0.24565972
+anchor_top = 0.9259259
+anchor_right = 0.36024305
+anchor_bottom = 0.97839504
+text = "Close"
+metadata/_edit_use_anchors_ = true
+
+[node name="open" type="Button" parent="CodeEdit" unique_id=146785765]
+layout_mode = 0
+anchor_left = 0.6319444
+anchor_top = 0.92746913
+anchor_right = 0.7465278
+anchor_bottom = 0.97993827
+text = "Open"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CodeEdit" unique_id=1972788115]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Magnus Talk - Render"
+
+[connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="CodeEdit/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="CodeEdit/open" to="." method="_on_open_pressed"]

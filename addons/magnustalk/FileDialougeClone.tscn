@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ck0ibdhq5sbbd"]
+
+[node name="FileDialougeClone" type="FileDialog"]
+oversampling_override = 1.0
+initial_position = 4
+visible = true
+filters = PackedStringArray("*.tscn")

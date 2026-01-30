@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://412ky07fmkeo"]
+
+[ext_resource type="Script" uid="uid://c6d1wdvsmpsfh" path="res://addons/magnustalk/option.gd" id="1_cd5v0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cd5v0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtwqn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slay5"]
+bg_color = Color(0.12591085, 0.12591085, 0.12591082, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_l82yo"]
+Button/styles/disabled = SubResource("StyleBoxFlat_cd5v0")
+Button/styles/focus = SubResource("StyleBoxFlat_rtwqn")
+Button/styles/normal = SubResource("StyleBoxFlat_slay5")
+
+[node name="Option" type="Button" unique_id=525973263]
+theme = SubResource("Theme_l82yo")
+text = "OPTION"
+script = ExtResource("1_cd5v0")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

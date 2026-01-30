@@ -1,0 +1,211 @@
+[gd_scene format=3 uid="uid://bqpurpvp2ie8c"]
+
+[ext_resource type="Script" uid="uid://cmh3eypl3bncq" path="res://addons/magnustalk/box.gd" id="1_rpx5d"]
+[ext_resource type="PackedScene" uid="uid://412ky07fmkeo" path="res://addons/magnustalk/option.tscn" id="2_bych0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpx5d"]
+bg_color = Color(0.11858138, 0.11858139, 0.11858132, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.49831593, 0.4187563, 0.97464913, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Animation" id="Animation_x4uqc"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1104, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(106, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_bych0"]
+resource_name = "new_animation"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 3),
+"points": PackedFloat32Array(22, 0, 0, 0.07777778, 180.33334, 22, -0.125, 0, 0.125, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 3),
+"points": PackedFloat32Array(19, 0, 0, 0.07777778, 14.500001, 25, -0.125, -1.5, 0.125, 1.5),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_oihkn"]
+resource_name = "new_animation_2"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(22, -0.25, 0, 0.25, 0, 22, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(19, -0.25, 0, 0.25, 0, 27, -0.25, -2, 0.25, 2),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5vls"]
+_data = {
+&"RESET": SubResource("Animation_x4uqc"),
+&"new_animation": SubResource("Animation_bych0"),
+&"new_animation_2": SubResource("Animation_oihkn")
+}
+
+[node name="box" type="CanvasLayer" unique_id=2014604603 node_paths=PackedStringArray("audio_output", "text_output", "character_label", "options", "button", "box", "triangle")]
+script = ExtResource("1_rpx5d")
+audio_output = NodePath("AudioStreamPlayer")
+text_output = NodePath("box/Text")
+character_label = NodePath("box/character")
+options = NodePath("box/options")
+button = NodePath("Button")
+box = NodePath("box")
+triangle = NodePath("box/Text/MarginContainer/triangle")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1173419815]
+
+[node name="Button" type="Button" parent="." unique_id=123737323]
+visible = false
+offset_left = 1323.0
+offset_top = 465.0
+offset_right = 1528.0
+offset_bottom = 514.0
+text = "Next"
+
+[node name="box" type="Panel" parent="." unique_id=2110822463]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -188.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rpx5d")
+
+[node name="portrait" type="TextureRect" parent="box" unique_id=1338657200]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 709.0
+offset_top = 21.0
+offset_right = 859.0
+offset_bottom = 171.0
+expand_mode = 1
+
+[node name="Text" type="RichTextLabel" parent="box" unique_id=1680122290]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.014756944
+anchor_top = 0.31382978
+anchor_right = 0.9887153
+anchor_bottom = 0.96276593
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Text"
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="box/Text" unique_id=311160541]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.96880573
+anchor_top = 0.6721311
+anchor_right = 1.0044563
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="triangle" type="Polygon2D" parent="box/Text/MarginContainer" unique_id=680332465]
+z_index = 4
+position = Vector2(1104, 106)
+polygon = PackedVector2Array(-10, -1, 10, -1, 0, 13)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="box/Text/MarginContainer/triangle" unique_id=224880484]
+libraries/ = SubResource("AnimationLibrary_j5vls")
+autoplay = &"new_animation_2"
+
+[node name="character" type="RichTextLabel" parent="box" unique_id=726165045]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.010416667
+anchor_top = 0.069148935
+anchor_right = 0.9809028
+anchor_bottom = 0.30851063
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[b]Character"
+metadata/_edit_use_anchors_ = true
+
+[node name="options" type="VBoxContainer" parent="box" unique_id=1991204603]
+layout_mode = 0
+anchor_left = 0.7578125
+anchor_top = 0.17021276
+anchor_right = 0.9600694
+anchor_bottom = 0.9787234
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Option" parent="box/options" unique_id=1946563439 instance=ExtResource("2_bych0")]
+layout_mode = 2
+text = "Option 1"
+
+[node name="Option2" parent="box/options" unique_id=2042565759 instance=ExtResource("2_bych0")]
+layout_mode = 2
+text = "Option 2"
+
+[node name="Option3" parent="box/options" unique_id=1117272625 instance=ExtResource("2_bych0")]
+layout_mode = 2
+text = "Option 3"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
