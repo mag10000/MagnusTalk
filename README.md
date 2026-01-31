@@ -6,7 +6,7 @@ Welcome to magnus talk your trusty dialogue plugin
 
 Instalation
 ---------------
->To download go to this [link](https://github.com/mag10000/MagnusTalk/archive/37bd2dc45b368ba1040005a5cfe01d75a04f440d.zip).
+>To download go to this [link](https://github.com/mag10000/MagnusTalk/archive/0406040639264f07e4b5bf080f41489f1446accc.zip).
 
 >Unzip the newly dowloaded file.
 
