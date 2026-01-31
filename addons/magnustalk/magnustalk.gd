@@ -1,11 +1,16 @@
 @tool
 extends EditorPlugin
 
+var language = EditorInterface.get_editor_language()
 var taskbar
 var poupop 
 var render
 
 func _enable_plugin():
+	var popup = preload("res://addons/magnustalk/welcome_screen.tscn")
+	var instance = popup.instantiate()
+	instance.open_docs.connect(docs)
+	add_child(instance)
 	add_autoload_singleton("MagnusTalk","res://addons/magnustalk/MagnusAutoload.gd")
 	add_autoload_singleton("MagnusTalkTech","res://addons/magnustalk/MagnusAutoloadTech.gd")
 
@@ -21,6 +26,7 @@ func _enter_tree():
 	add_tool_menu_item("Clone Dialouge Box",_clone_box)
 	add_tool_menu_item("Test Dialouge",_test)
 	add_tool_menu_item("Render Dialouge",_render_text)
+	add_tool_menu_item("Generate CSV Translation",csv)
 	add_tool_menu_item("Magnus Talk Docs",docs)
 	var taskbar_scene = preload("res://addons/magnustalk/taskbar.tscn")
 	var taskbar_instance = taskbar_scene.instantiate()
@@ -31,6 +37,7 @@ func _enter_tree():
 	taskbar.clone.connect(_clone_box)
 	taskbar.render.connect(_render_text)
 	taskbar.docs.connect(_docs)
+	taskbar.laungage = language
 
 
 func _exit_tree():
@@ -40,6 +47,7 @@ func _exit_tree():
 	remove_tool_menu_item("Clone Dialouge Box")
 	remove_tool_menu_item("Test Dialouge")
 	remove_tool_menu_item("Render Dialouge")
+	remove_tool_menu_item("Generate CSV Translation")
 	remove_tool_menu_item("Magnus Talk Docs")
 	if poupop:
 		poupop.queue_free()
@@ -80,9 +88,20 @@ func _docs(text):
 	var scene = preload("res://addons/magnustalk/docs.tscn")
 	var instance = scene.instantiate()
 	instance.text = text
+	instance.open_tscn.connect(run_coustom_scene)
 	doc = instance
 	add_child(instance)
 
 func docs():
 	if taskbar.gotten_docs:
 		_docs(taskbar.doc_html)
+	else:
+		await get_tree().create_timer(1).timeout
+		docs()
+
+func run_coustom_scene(scene):
+	if FileAccess.file_exists(scene):
+		EditorInterface.play_custom_scene(scene)
+
+func csv():
+	taskbar._on_csv_pressed()

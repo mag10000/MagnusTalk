@@ -24,6 +24,7 @@ var box_click = false
 @export_group("Other Options")
 @export var use_portraits : bool = true
 @export var use_audio : bool = true
+@export var use_translation : bool = false
 @export var audio_volume : float = 0.0
 var groups = {}
 
@@ -40,6 +41,9 @@ func open_dialouge(path):
 	var text = FileAccess.get_file_as_string(path)
 	lines = text.split("
 ")
+	for line in lines:
+		if use_translation:
+			lines[lines.find(line)] = tr("LINE_" + str(lines.find(line) + 1))
 	if lines.size() > 0:
 		last_line = lines.size() - 1
 	else:
@@ -48,6 +52,10 @@ func open_dialouge(path):
 		if line.contains("*** "):
 			groups[line.split(" ***")[0].replace("*** ","")] = lines.find(line)
 			lines[lines.find(line)] = ""
+	if use_translation:
+		for line in lines:
+			if line == "LINE_" + str(int(line)):
+				lines[lines.find(line)] = ""
 	start_dialouge()
 
 func start_dialouge():

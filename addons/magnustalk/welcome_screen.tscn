@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://djln17f0u8hvm"]
+
+[ext_resource type="Script" uid="uid://bkagvrt2u26jq" path="res://addons/magnustalk/welcome_screen.gd" id="1_kitrj"]
+[ext_resource type="Texture2D" uid="uid://cbsyeriqbptoq" path="res://addons/magnustalk/Magnus Talk Logo.png" id="1_p0xkh"]
+
+[sub_resource type="Theme" id="Theme_p0xkh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kitrj"]
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8338114, 0.75965637, 0.95655555, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[node name="welcome screen" type="CanvasLayer" unique_id=820354814]
+script = ExtResource("1_kitrj")
+
+[node name="Control" type="Control" parent="." unique_id=91080311]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control" unique_id=1534120299]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -410.0
+offset_top = -233.0
+offset_right = 410.0
+offset_bottom = 233.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="RichTextLabel" parent="Control/Panel" unique_id=1631131871]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -412.0
+offset_right = 412.0
+offset_bottom = 98.0
+grow_horizontal = 2
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[b]Welcome To Magnus Talk"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Logo" type="Panel" parent="Control/Panel" unique_id=829092406]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.44512194
+anchor_top = 0.1695279
+anchor_right = 0.56707317
+anchor_bottom = 0.38412017
+offset_left = -5.0
+offset_top = 3.0
+offset_right = -5.0
+offset_bottom = 3.0
+theme = SubResource("Theme_p0xkh")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kitrj")
+
+[node name="MagnusTalkLogo" type="TextureRect" parent="Control/Panel/Logo" unique_id=785270439]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_p0xkh")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="body" type="RichTextLabel" parent="Control/Panel" unique_id=1274650448]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -325.0
+offset_top = -260.0
+offset_right = 325.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "We would suggest that you take a peek at the [url=docs]documentation[/url]
+
+All of the tools included in this plugin can either be found in the taskbar(bottom right) or the tools menu under project > tools"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="close" type="Button" parent="Control/Panel" unique_id=263983146]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -77.0
+offset_top = -71.0
+offset_right = 77.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Close"
+
+[connection signal="meta_clicked" from="Control/Panel/body" to="." method="_on_body_meta_clicked"]
+[connection signal="pressed" from="Control/Panel/close" to="." method="_on_close_pressed"]

@@ -1,6 +1,7 @@
 @tool
 extends CanvasLayer
 
+signal open_tscn(tscn_path : String)
 var text = ""
 var titles = ["Intro"]
 var texts = []
@@ -47,3 +48,10 @@ func get_tag(text,tag):
 	var result = regex.search(text)
 	if result:
 		return result.get_string().replace("<doc_title>","").replace("</doc_title>","")
+
+
+func _on_rich_text_label_meta_clicked(meta):
+	if str(meta).contains("res://"):
+		open_tscn.emit(str(meta))
+	else:
+		OS.shell_open(str(meta))

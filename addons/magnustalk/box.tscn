@@ -111,6 +111,7 @@ options = NodePath("box/options")
 button = NodePath("Button")
 box = NodePath("box")
 triangle = NodePath("box/Text/MarginContainer/triangle")
+use_translation = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1173419815]
 

@@ -8,6 +8,7 @@ signal refresh
 signal render
 signal docs(html : String)
 
+var laungage = ""
 var gotten_docs = false
 var doc_html = ""
 
@@ -62,10 +63,38 @@ func _on_render_pressed():
 
 func _on_http_request_request_completed(result, response_code, headers, body):
 	$HTTPRequest.request("https://magnusknisely.wixsite.com/magnus-talk-plugin")
-	doc_html = body.get_string_from_utf8().split("text-align:center; font-size:22px;\">")[1].split("</p")[0].replace("&lt;","<").replace("&gt;",">").replace("<span class=\"wixui-rich-text__text\">","").replace("</span>","").replace("</doc_title>","<doc_title>")
+	doc_html = body.get_string_from_utf8().split("text-align:center; font-size:22px;\">")
+	if doc_html.size() > 1:
+		doc_html = doc_html[1].split("</p")[0].replace("&lt;","<").replace("&gt;",">").replace("<span class=\"wixui-rich-text__text\">","").replace("</span>","").replace("</doc_title>","<doc_title>")
 	gotten_docs = true
 	$Panel/HBoxContainer/docs.disabled = false
 
 
 func _on_docs_pressed():
 	docs.emit(doc_html)
+
+
+func _on_csv_pressed():
+	$CsvFileDialog.show()
+
+var csv_save_to_path = ""
+func _on_csv_file_dialog_file_selected(path):
+	csv_save_to_path = path
+	$CsvFileDialog2.popup()
+
+
+func _on_csv_file_dialog_2_file_selected(path):
+	var lines = FileAccess.get_file_as_string(path).split("
+")
+	var csv_text = "key," + laungage
+	for line in lines:
+		if line.contains(","):
+			csv_text += "
+LINE_" +  str(lines.find(line) + 1) + ",\"" + line + "\""
+		else:
+			csv_text += "
+LINE_" +  str(lines.find(line) + 1) + "," + line + ""
+	var file = FileAccess.open(csv_save_to_path, FileAccess.WRITE)
+	file.store_string(csv_text)
+	file.close()
+	file = null

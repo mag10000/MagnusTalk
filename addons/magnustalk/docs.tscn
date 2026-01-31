@@ -87,3 +87,4 @@ bbcode_enabled = true
 text = "[b]Intro"
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
+[connection signal="meta_clicked" from="ColorRect/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]

@@ -53,6 +53,10 @@ text = "Clone Dialouge Box"
 layout_mode = 2
 text = "Render Dialouge"
 
+[node name="csv" type="Button" parent="Panel/HBoxContainer" unique_id=1696232847]
+layout_mode = 2
+text = "Generate CSV translation"
+
 [node name="docs" type="Button" parent="Panel/HBoxContainer" unique_id=1073218285]
 layout_mode = 2
 disabled = true
@@ -77,6 +81,18 @@ initial_position = 4
 file_mode = 0
 filters = PackedStringArray("*.txt")
 
+[node name="CsvFileDialog" type="FileDialog" parent="." unique_id=2019852463]
+oversampling_override = 1.0
+initial_position = 4
+filters = PackedStringArray("*.csv")
+
+[node name="CsvFileDialog2" type="FileDialog" parent="." unique_id=1063775496]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 4
+file_mode = 0
+filters = PackedStringArray("*.txt")
+
 [node name="Timer" type="Timer" parent="." unique_id=1097460253]
 autostart = true
 
@@ -86,8 +102,11 @@ autostart = true
 [connection signal="pressed" from="Panel/HBoxContainer/edit" to="." method="_on_edit_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/clone" to="." method="_on_clone_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/render" to="." method="_on_render_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/csv" to="." method="_on_csv_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/docs" to="." method="_on_docs_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="file_selected" from="TestFileDialog" to="." method="_on_test_file_dialog_file_selected"]
+[connection signal="file_selected" from="CsvFileDialog" to="." method="_on_csv_file_dialog_file_selected"]
+[connection signal="file_selected" from="CsvFileDialog2" to="." method="_on_csv_file_dialog_2_file_selected"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

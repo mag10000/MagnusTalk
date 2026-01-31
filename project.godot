@@ -21,13 +21,16 @@ config/icon="uid://cbsyeriqbptoq"
 
 [autoload]
 
-Doctest="*res://addons/magnustalk/doctest.gd"
 MagnusTalk="*uid://ccvydk5gy4smn"
 MagnusTalkTech="*uid://djup3fh213c08"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/magnustalk/plugin.cfg")
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://TEST.en.translation")
 
 [rendering]
 
