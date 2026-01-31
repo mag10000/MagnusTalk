@@ -101,9 +101,10 @@ _data = {
 &"new_animation_2": SubResource("Animation_oihkn")
 }
 
-[node name="box" type="CanvasLayer" unique_id=2014604603 node_paths=PackedStringArray("audio_output", "text_output", "character_label", "options", "button", "box", "triangle")]
+[node name="box" type="CanvasLayer" unique_id=2014604603 node_paths=PackedStringArray("audio_output", "character_portrait", "text_output", "character_label", "options", "button", "box", "triangle")]
 script = ExtResource("1_rpx5d")
 audio_output = NodePath("AudioStreamPlayer")
+character_portrait = NodePath("box/portrait")
 text_output = NodePath("box/Text")
 character_label = NodePath("box/character")
 options = NodePath("box/options")

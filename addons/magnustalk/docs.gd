@@ -2,25 +2,29 @@
 extends CanvasLayer
 
 var text = ""
-var chaps = {}
+var titles = ["intro"]
+var texts = []
+var chap_to_text = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	text = text.replace("[enter]","
+")
 	$ColorRect/RichTextLabel.text = text
 	var split = text.split("<doc_title>")
 	var numb = 1
 	var pre = ""
 	for text in split:
-		if numb % 2 != 0:
-			print(numb % 2)
-			text = text.replace(text,"")
-			chaps[text] = pre
+		if numb % 2 == 0:
+			titles.insert(titles.size(),text)
 		else:
-			print(numb % 2)
-			pre = text
+			texts.insert(texts.size(),text)
 		numb += 1
-	print(text)
-	print(chaps)
+	print("texts: ",texts)
+	print("titles: ",titles)
+	for title in titles:
+		chap_to_text[title] = texts[titles.find(title)]
+	print(chap_to_text)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -14,13 +14,9 @@ func _process(delta):
 
 func _on_pressed():
 	var lines_text = jump_to.replace("[","").replace("]","")
-	print(lines_text)
 	if str(int(jump_to)) != lines_text:
-			print(lines_text,2)
 			if $"../../..".groups.has(lines_text):
-				print(lines_text,3)
 				$"../../..".current_line = $"../../..".groups[lines_text]
-				print($"../../..".groups[lines_text])
 				$"../../..".start_dialouge()
 				return
 	if int(jump_to) == 0:

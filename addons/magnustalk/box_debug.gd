@@ -15,6 +15,7 @@ var groups = {}
 @export var pauses : PackedStringArray = [".","!","?"]
 @export_group("Nodes")
 @export var audio_output : AudioStreamPlayer
+@export var character_portrait : TextureRect
 @export var text_output : RichTextLabel
 @export var character_label : RichTextLabel
 @export var options : VBoxContainer
@@ -23,6 +24,8 @@ var groups = {}
 @export var triangle : Polygon2D
 @export_group("Other Options")
 @export var use_portraits : bool = true
+@export var use_audio : bool = true
+@export var audio_volume : float = 0.0
 
 func _ready():
 	box.hide()
@@ -132,6 +135,13 @@ func start_dialouge():
 				options.hide()
 				var character : String
 				var text
+				if line_text.contains("Msound[") && use_audio == true:
+					var path = line_text.replace(line_text.split("Msound[")[0],"").replace("]","").replace("Msound[","")
+					line_text = line_text.replace("Msound[" + path + "]","")
+					audio_output.stream = load(path)
+					audio_output.volume_db = audio_volume
+					audio_output.play()
+				
 				if line_text.split(" ")[0].contains("Mchar["):
 					var charpre = line_text.split(" ")[0]
 					var format2 = charpre.replace("Mchar[","").replace("]","")
@@ -152,7 +162,7 @@ func start_dialouge():
 				var started = false
 				if character != "" && use_portraits:
 					if FileAccess.file_exists("res://addons/magnustalk/portraits/" + character.to_lower().replace(" ","_") + ".png"):
-						$box/portrait.texture = load("res://addons/magnustalk/portraits/" + character.to_lower().replace(" ","_") + ".png")
+						character_portrait.texture = load("res://addons/magnustalk/portraits/" + character.to_lower().replace(" ","_") + ".png")
 				if use_typing:
 					for letter in text_output.get_parsed_text():
 						if started == false:

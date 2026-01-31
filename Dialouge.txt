@@ -1,12 +1,12 @@
 DEFINE localvar[hi,90000]
-Mchar[CHARACTER] Hello! Hi. Howdy? GETVAR[hi] GETVAR[hi] GETVAR[hi] GETVAR[hi] GETVAR[hi]
+Mchar[CHARACTER] Hello! Hi. Howdy? GETVAR[hi] GETVAR[hi] GETVAR[hi] GETVAR[hi] GETVAR[hi] Msound[res://Song.wav]
 Mjump[test]
 4
 Mjump[END]
-uhh ohh problem
+uhh ohh problem 1
 *** test ***
 hello this is cool
 Mopo[] test Mjump[test]
 Mopo[] 4 Mjump[4]
-Mopo[] end Mjump[END]
-uhh ohh problem
+Mopo[] end Mjump[13]
+uhh ohh problem ugh..
