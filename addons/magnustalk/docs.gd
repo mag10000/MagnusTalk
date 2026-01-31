@@ -2,7 +2,7 @@
 extends CanvasLayer
 
 var text = ""
-var titles = ["intro"]
+var titles = ["Intro"]
 var texts = []
 var chap_to_text = {}
 
@@ -20,11 +20,17 @@ func _ready():
 		else:
 			texts.insert(texts.size(),text)
 		numb += 1
-	print("texts: ",texts)
-	print("titles: ",titles)
 	for title in titles:
 		chap_to_text[title] = texts[titles.find(title)]
-	print(chap_to_text)
+	
+	for chap in chap_to_text:
+		var scene = preload("res://addons/magnustalk/doc_button.tscn")
+		var instance = scene.instantiate()
+		instance.text = chap
+		instance.stored_body = chap_to_text[chap]
+		$ColorRect/Panel/VBoxContainer.add_child(instance)
+	$ColorRect/RichTextLabel.text = chap_to_text["Intro"]
+	$ColorRect/title.text = "[b]" + "Intro"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

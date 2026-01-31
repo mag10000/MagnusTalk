@@ -51,6 +51,7 @@ func open_dialouge(path):
 	start_dialouge()
 
 func start_dialouge():
+	global_variables = MagnusTalk._global_vars
 	audio_output.stop()
 	box_click = true
 	button.show()
@@ -63,17 +64,27 @@ func start_dialouge():
 			var code = line_text.replace("Mchecklocalvar[","").replace("]","").split(",")
 			if local_variables.has(code[0]):
 				if local_variables[code[0]] == code[1]:
-					print("YES")
 					current_line += 1
 					start_dialouge()
 					return
 				else:
-					print("NO")
 					current_line -= 1
 					start_dialouge()
 					return
-			print("NO EXIST")
-			print(code[0])
+			current_line -= 1
+			start_dialouge()
+			return
+		if line_text.contains("Mcheckglobalvar["):
+			var code = line_text.replace("Mchecklocalvar[","").replace("]","").split(",")
+			if global_variables.has(code[0]):
+				if global_variables[code[0]] == code[1]:
+					current_line += 1
+					start_dialouge()
+					return
+				else:
+					current_line -= 1
+					start_dialouge()
+					return
 			current_line -= 1
 			start_dialouge()
 			return

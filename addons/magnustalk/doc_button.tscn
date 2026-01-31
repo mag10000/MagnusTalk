@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bfsgb800pgw8s"]
+
+[ext_resource type="Script" uid="uid://b4evv3p4fb4nx" path="res://addons/magnustalk/doc_button.gd" id="1_tqcjd"]
+
+[node name="DocButton" type="Button" unique_id=2095447465]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "CHAPTER NAME"
+script = ExtResource("1_tqcjd")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

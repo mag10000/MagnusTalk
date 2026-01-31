@@ -63,7 +63,6 @@ func _on_render_pressed():
 func _on_http_request_request_completed(result, response_code, headers, body):
 	$HTTPRequest.request("https://magnusknisely.wixsite.com/magnus-talk-plugin")
 	doc_html = body.get_string_from_utf8().split("text-align:center; font-size:22px;\">")[1].split("</p")[0].replace("&lt;","<").replace("&gt;",">").replace("<span class=\"wixui-rich-text__text\">","").replace("</span>","").replace("</doc_title>","<doc_title>")
-	#print(doc_html)
 	gotten_docs = true
 	$Panel/HBoxContainer/docs.disabled = false
 

@@ -42,7 +42,6 @@ func open_dialouge(path):
 	var text = FileAccess.get_file_as_string(path)
 	lines = text.split("
 ")
-	print(lines)
 	if lines.size() > 0:
 		last_line = lines.size() - 1
 	else:
@@ -62,6 +61,38 @@ func start_dialouge():
 		if line_text == "":
 			current_line += 1
 			start_dialouge()
+		if line_text.contains("Mchecklocalvar["):
+			var code = line_text.replace("Mchecklocalvar[","").replace("]","").split(",")
+			if local_variables.has(code[0]):
+				if local_variables[code[0]] == code[1]:
+					current_line += 1
+					start_dialouge()
+					return
+				else:
+					current_line -= 1
+					start_dialouge()
+					return
+			current_line -= 1
+			start_dialouge()
+			return
+		if line_text.contains("Mcheckglobalvar["):
+			var code = line_text.replace("Mchecklocalvar[","").replace("]","").split(",")
+			if global_variables.has(code[0]):
+				if global_variables[code[0]] == code[1]:
+					current_line += 1
+					start_dialouge()
+					return
+				else:
+					current_line -= 1
+					start_dialouge()
+					return
+			current_line -= 1
+			start_dialouge()
+			return
+		if line_text.contains("Mcallfunc["):
+			current_line += 1
+			start_dialouge()
+			return
 		else:
 			if line_text == "Mjump[END]":
 				stop_dialouge()
@@ -77,7 +108,6 @@ func start_dialouge():
 				button.text = line_text.replace("Mopo[] ","").split(" Mjump")[0]
 				button.jump_to = jumpto
 				options.add_child(button)
-				print(lines[current_line + 1])
 				if not lines.size() - 1 == current_line:
 					if lines[current_line + 1].contains("Mopo[] "):
 						current_line += 1
@@ -86,14 +116,9 @@ func start_dialouge():
 			if line_text.contains("Mjump["):
 				var line = int(line_text)
 				var lines_text = line_text.replace("Mjump[","").replace("]","")
-				print(lines_text)
 				if str(line) != lines_text:
-					print(lines_text,2)
-					print(groups)
 					if groups.has(lines_text):
-						print(lines_text,3)
 						current_line = groups[lines_text]
-						print(groups[lines_text])
 						start_dialouge()
 						return
 				current_line = line - 1
@@ -176,7 +201,6 @@ func start_dialouge():
 				text_output.text = text
 				button.show()
 				triangle.show()
-				print(character + ": " + text)
 				if not lines.size() - 1 == current_line:
 					if lines[current_line + 1].contains("Mopo[] "):
 						current_line += 1
@@ -188,7 +212,6 @@ func stop_dialouge():
 	get_tree().quit()
 	box_click = false
 	button.hide()
-	print("End Dialouge")
 	options.hide()
 	text_output.text = ""
 	character_label.text = ""

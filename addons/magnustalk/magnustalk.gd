@@ -77,7 +77,6 @@ func _render_text():
 
 var doc
 func _docs(text):
-	print(text)
 	var scene = preload("res://addons/magnustalk/docs.tscn")
 	var instance = scene.instantiate()
 	instance.text = text
