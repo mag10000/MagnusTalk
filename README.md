@@ -20,4 +20,4 @@ Instalation
 
 Documentation
 ---------------
-You can either use the documentation built in with the plugin or you can use the documentation [here](https://github.com/mag10000/MagnusTalk/).
+You can either use the documentation built in with the plugin or you can use the documentation [here](https://magnusknisely.wixsite.com/magnus-talk-plugin/doc-to-be-viewed).
