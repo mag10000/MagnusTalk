@@ -124,12 +124,23 @@ func start_dialouge():
 						current_line += 1
 						start_dialouge()
 				return
+			if line_text.contains(" Mjump["):
+				var line = int(line_text)
+				var lines_text = line_text.split("Mjump[")[1].replace("]","")
+				if str(line) != lines_text:
+					if groups.has(lines_text):
+						current_line = groups[lines_text] + 1
+						start_dialouge()
+						return
+				current_line = line - 1
+				start_dialouge()
+				return
 			if line_text.contains("Mjump["):
 				var line = int(line_text)
 				var lines_text = line_text.replace("Mjump[","").replace("]","")
 				if str(line) != lines_text:
 					if groups.has(lines_text):
-						current_line = groups[lines_text]
+						current_line = groups[lines_text] + 1
 						start_dialouge()
 						return
 				current_line = line - 1

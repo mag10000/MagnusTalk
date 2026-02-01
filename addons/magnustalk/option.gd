@@ -16,7 +16,7 @@ func _on_pressed():
 	var lines_text = jump_to.replace("[","").replace("]","")
 	if str(int(jump_to)) != lines_text:
 			if $"../../..".groups.has(lines_text):
-				$"../../..".current_line = $"../../..".groups[lines_text]
+				$"../../..".current_line = $"../../..".groups[lines_text] + 1
 				$"../../..".start_dialouge()
 				return
 	if int(jump_to) == 0:
