@@ -214,6 +214,9 @@ func start_dialouge():
 				button.show()
 				triangle.show()
 				if not lines.size() - 1 == current_line:
+					if current_line > last_line:
+						stop_dialouge()
+						return
 					if lines[current_line + 1].contains("Mopo[] "):
 						current_line += 1
 						start_dialouge()
